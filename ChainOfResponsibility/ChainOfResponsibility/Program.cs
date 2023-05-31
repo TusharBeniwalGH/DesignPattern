@@ -1,21 +1,25 @@
-﻿using ChainOfResponseAbility;
+﻿namespace ChainOfResponsibility
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            TeamLeader obj1 = new TeamLeader();
+            ProjectLeader obj2 = new ProjectLeader();
+            HR obj3 = new HR();
 
-Approver larry = new Director();
+            obj1.SetNextSupervisor(obj2);
+            obj2.SetNextSupervisor(obj3);
 
-Approver sam = new VicePresident();
+            obj1.ApplyLeave("tushar", 10);
 
-Approver tammy = new President();
+            obj1.ApplyLeave("karan", 20);
 
-larry.SetSucessor(sam);
-sam.SetSucessor(tammy);
+            obj1.ApplyLeave("kuldeep", 40);
 
-Purchase p = new Purchase(2034, 350.00, "Supplies");
-larry.ProcessRequest(p);
+            obj1.ApplyLeave("raman", 50);
 
-p = new Purchase(2035, 12590.10, "Project X");
-larry.ProcessRequest(p);
-
-p = new Purchase(2036, 122100.00, "Project Y");
-larry.ProcessRequest(p);
-
-Console.ReadKey();
+            Console.Read();
+        }
+    }
+}
