@@ -1,0 +1,43 @@
+﻿
+
+namespace Adapter
+{
+    public class EmployeeAdapter : ThirdPartyBillingSystem,ITarget
+    {
+        public void ProcessCompanySalary(string[,] employeesArray)
+        {
+            string Id="";
+            string Name="";
+            string Designation = "";
+            string Salary = "";
+            List<Employee> listEmployee = new List<Employee>();
+            for (int i = 0; i < employeesArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < employeesArray.GetLength(1); j++)
+                {
+                    if (j == 0)
+                    {
+                        Id = employeesArray[i, j];
+                    }
+                    else if (j == 1)
+                    {
+                        Name = employeesArray[i, j];
+                    }
+                    else if (j == 2)
+                    {
+                        Designation = employeesArray[i, j];
+                    }
+                    else
+                    {
+                        Salary = employeesArray[i, j];
+                    }
+                }
+                listEmployee.Add(new Employee(Convert.ToInt32(Id), Name, Designation, Convert.ToDecimal(Salary)));
+            }
+            Console.WriteLine("Adapter converted Array of Employee to List of Employee");
+            Console.WriteLine("Then delegate to the ThirdPartyBillingSystem for processing the employee salary\n");
+            //Call the Base Class ProcessSalary Method to Process the Salary
+            ProcessSalary(listEmployee);
+        }
+    }
+}
