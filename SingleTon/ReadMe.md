@@ -1,0 +1,1 @@
+***Singleton Design Pattern enusres that a class have only instance and provide global; access to that instance.***
